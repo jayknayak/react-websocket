@@ -17,7 +17,7 @@ class App extends Component {
   }
   connect = () => {
     if (this.ws === undefined || (this.ws && this.ws.readyState === 3)) {
-      this.ws = new WebSocket(`ws://127.0.0.1:8000/ws/`);
+      this.ws = new WebSocket(`ws://127.0.0.1:8000/ws/message/`);
     }
     this.ws.onopen = () => {
       console.log("Websocket Client Connected");
