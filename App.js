@@ -3,9 +3,6 @@ import React, { Component, Suspense } from "react";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      client: null,
-    };
     this.connect = this.connect.bind(this);
   }
   componentDidMount() {
@@ -21,7 +18,11 @@ class App extends Component {
     }
     this.ws.onopen = () => {
       console.log("Websocket Client Connected");
-      this.setState({ client: this.ws });
+      this.ws.send(
+        JSON.stringify({
+          type: "welcome_msg",
+        })
+      );
     };
     this.ws.onmessage = (message) => {
       const dataFromServer = JSON.parse(message.data);
